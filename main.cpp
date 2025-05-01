@@ -27,14 +27,20 @@ int main()
             std::cin >> roll[frameRoll1];
             if (roll[frameRoll1] < 10) {
                 std::cin >> roll[frameRoll2];
-            } else if ((roll[frameRoll1] > 10) || (roll[frameRoll1] < 0)) { // Handle bad user input
+            } else if ((roll[frameRoll1] > 10) || (roll[frameRoll1] < 0)) {     // Handle bad user input
                 std::cout << "Invalid input, must be between 0 and 10 pins" << std::endl;
                 break;
-            } else {
-                roll[frameRoll2] = 0;
             }
 
-            if (roll[frameRoll1] + roll[frameRoll2] > 10) { // Handle bad user input
+            if (frameRoll1 == 10) {     // Handle Strikes
+
+            }
+
+            if (roll[frameRoll1] + roll[frameRoll2] == 10) {    // Handle Spares
+
+            }
+
+            if (roll[frameRoll1] + roll[frameRoll2] > 10) {     // Handle bad user input
                 std::cout << "Invalid input, must be 10 pins or less" << std::endl;
                 break;
             }
