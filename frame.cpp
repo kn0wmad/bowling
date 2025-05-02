@@ -4,17 +4,16 @@
 
 // Method definitions
 // Calculate score for each frame
-int Frame::calcScore(int roll1, int roll2) {
+int Frame::calcScore(int *roll1, int *roll2) {
     int frameScore;
 
-    if (roll1 == 10) {
+    if (*roll1 == 10) {                     // Handle strikes
         frameScore = 10;
-    } else if ((roll1 + roll2) == 10) {
+    } else if ((*roll1 + *roll2) == 10) {   // Handle spares
         frameScore = 10;
     } else {
-        frameScore = roll1 + roll2;
+        frameScore = *roll1 + *roll2;
     }
-
     return frameScore;
 }
 
@@ -34,7 +33,11 @@ void Frame::printScore(int frame, int roll1, int roll2, int frameScore) {
     // Throws
     std::cout << "Throw |";
     for (int j = 0; j < frame; j++) {           // Iterate throw for each frame
-        std::cout << std::setw(2) << roll1 << " " << roll2 << std::setw(2) << "|";
+        if ((roll1 == 10) || ((roll1 + roll2) == 10)) {
+            std::cout << std::setw(2) << roll1 << " " << std::setw(3) << "|";
+        } else {
+            std::cout << std::setw(2) << roll1 << " " << roll2 << std::setw(2) << "|";
+        }
     }
     std::cout << std::endl;
 

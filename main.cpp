@@ -48,7 +48,7 @@ int main() {
         }
 
         // Calculate frame score
-        gameFrames[i].score = gameFrames[i].calcScore(frameRoll1, frameRoll2);
+        gameFrames[i].score = gameFrames[i].calcScore(&frameRoll1, &frameRoll2);
 
         // Print score table
         gameFrames[i].printScore(currentFrame, frameRoll1, frameRoll2, gameFrames[i].score);
