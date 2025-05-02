@@ -7,61 +7,24 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include "frame.h"
 
-// Global variables
+// Constants
+const int TOTAL_FRAMES = 10;
 const int MAX_ROLLS = 21;
-int roll[MAX_ROLLS] = {0};
-int score[10] = {0};
-std::string frameScore = "";
-int totalScore = 0;
 
 int main() {
-    // Get file from user
-    std::string filename;
-    std::cout << "Enter bowler file: " << std::endl;
-    std::cin >> filename;
+    Frame gameFrames[TOTAL_FRAMES];
 
-    // Open file and check that it opened successfully
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cout << "Error reading file: " << filename << std::endl;
+    for (int i = 0; i < TOTAL_FRAMES; i++) {
+        gameFrames[i].frame = 1;
+        gameFrames[i].roll1 = 0;
+        gameFrames[i].roll2 = 0;
+        gameFrames[i].score = 0;
+
+        gameFrames[i].calcScore();
+        gameFrames[i].printScore();
     }
-
-    // Iterate through Frames 1-9
-    for (int frame = 1; frame < 10; frame++) {
-        // Frame variables
-        int frameRoll1 = (frame - 1) * 2;
-        int frameRoll2 = frameRoll1 + 1;
-
-        // Input each file line to the first roll for this frame
-        file >> roll[frameRoll1];
-
-        // If the first roll is not a strike, roll again
-        if (roll[frameRoll1] < 10) {
-            file >> roll[frameRoll2];
-
-            // If second roll yields a spare, calc totalScore and frameScore
-            if (roll[frameRoll1] + roll[frameRoll2] == 10) {
-                totalScore += (roll[frameRoll1] + roll[frameRoll2]);
-                frameScore = "/";
-            } else {    // Otherwise, frame score is 2 rolls combined
-                totalScore = (roll[frameRoll1] + roll[frameRoll2]);
-                frameScore = std::to_string(roll[frameRoll1] + roll[frameRoll2]);
-            }
-        } else {    // First roll is a strike
-            totalScore = 10;
-            frameScore = "X";
-        }
-
-        // Output Frame data
-        // std::cout << frameRoll1 << " " << frameRoll2 << std::endl;
-        std::cout << "Frame " << "|  " << frame << "  " << std::endl;
-        std::cout << "Throw " << "| " << roll[frameRoll1] << " " << roll[frameRoll2] << std::endl;
-        std::cout << "Score " << "|  " << frameScore << "  " << std::endl << std::endl;
-    }
-
-    // Close user's file
-    file.close();
 
     return 0;
 }
