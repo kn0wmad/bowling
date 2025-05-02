@@ -9,6 +9,8 @@ int Frame::calcScore(int roll1, int roll2) {
 
     if (roll1 == 10) {
         frameScore = 10;
+    } else if ((roll1 + roll2) == 10) {
+        frameScore = 10;
     } else {
         frameScore = roll1 + roll2;
     }
@@ -22,9 +24,9 @@ void Frame::printScore(int frame, int roll1, int roll2, int frameScore) {
     std::cout << "Frame |";
     for (int i = 0; i < frame; i++) {          // Iterate frame index for each frame
         if (i < 9) {
-            std::cout << std::setw(3) << frame <<  std::setw(3) << "|";
+            std::cout << std::setw(3) << (i + 1) <<  std::setw(3) << "|";
         } else {
-            std::cout << std::setw(3) << frame <<  std::setw(2) << "|";
+            std::cout << std::setw(3) << (i + 1) <<  std::setw(2) << "|";
         }
     }
     std::cout << std::endl;
