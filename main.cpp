@@ -30,13 +30,20 @@ int main() {
 
     // Iterate through each frame
     for (int i = 0; i < TOTAL_FRAMES; i++) {
-        gameFrames[i].frame = i;                                                // Current frame
-        file >> gameFrames[i].roll1;                                            // Input first roll from file
-        file >> gameFrames[i].roll2;                                            // Input second roll from file
-        gameFrames[i].score =                                                   // Calculate frame score
-            gameFrames[i].calcScore(gameFrames[i].roll1, gameFrames[i].roll2);
+        int currentFrame = gameFrames[i].frame = i;     // Current frame
+        file >> gameFrames[i].roll1;                    // Input first roll from file and assign to new var for reuse
+        int frameRoll1 = gameFrames[i].roll1;
+        file >> gameFrames[i].roll2;                    // Input second roll from file
+        int frameRoll2 = gameFrames[i].roll2;
 
-        gameFrames[i].printScore();                                             // Print frame score table
+
+
+        // Calculate frame score
+        gameFrames[i].score = gameFrames[i].calcScore(
+            gameFrames[i].roll1, gameFrames[i].roll2
+        );
+
+        gameFrames[i].printScore(currentFrame, frameRoll1, frameRoll2, gameFrames[i].score);                     // Print frame score table
     }
 
     // Close the filestream
