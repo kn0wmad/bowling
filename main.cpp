@@ -13,6 +13,7 @@ const int MAX_ROLLS = 21;
 int roll[MAX_ROLLS] = {0};
 int score[10] = {0};
 std::string frameScore = "";
+int totalScore = 0;
 
 int main() {
     // Get file from user
@@ -38,15 +39,25 @@ int main() {
         // If the first roll is not a strike, roll again
         if (roll[frameRoll1] < 10) {
             file >> roll[frameRoll2];
-        }
 
-        frameScore = std::to_string(roll[frameRoll1] + roll[frameRoll2]);
+            // If second roll yields a spare, calc totalScore and frameScore
+            if (roll[frameRoll1] + roll[frameRoll2] == 10) {
+                totalScore += (roll[frameRoll1] + roll[frameRoll2]);
+                frameScore = "/";
+            } else {    // Otherwise, frame score is 2 rolls combined
+                totalScore = (roll[frameRoll1] + roll[frameRoll2]);
+                frameScore = std::to_string(roll[frameRoll1] + roll[frameRoll2]);
+            }
+        } else {    // First roll is a strike
+            totalScore = 10;
+            frameScore = "X";
+        }
 
         // Output Frame data
         // std::cout << frameRoll1 << " " << frameRoll2 << std::endl;
         std::cout << "Frame " << "|  " << frame << "  " << std::endl;
         std::cout << "Throw " << "| " << roll[frameRoll1] << " " << roll[frameRoll2] << std::endl;
-        std::cout << "Score " << "|  " << frameScore << "  " << std::endl;
+        std::cout << "Score " << "|  " << frameScore << "  " << std::endl << std::endl;
     }
 
     // Close user's file
