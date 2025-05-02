@@ -41,6 +41,10 @@ int main() {
         if (frameRoll1 < 10) {                          // Take second roll from file, only if not a strike
             file >> gameFrames[i].roll2;
             frameRoll2 = gameFrames[i].roll2;
+        } else if (frameRoll1 == 10) {
+            gameFrames[i].score = 10;
+            gameFrames[i].printScore(currentFrame, frameRoll1, frameRoll2, gameFrames[i].score);
+            continue;
         }
 
         // Calculate frame score
