@@ -38,17 +38,20 @@ int main() {
         int frameRoll1 = gameFrames[i].roll1;
         int frameRoll2;
 
+        int nextRoll1 = gameFrames[i + 1].roll1;
+        int nextRoll2 = gameFrames[i + 1].roll2;
+
         if (frameRoll1 < 10) {                          // Take second roll from file, only if not a strike
             file >> gameFrames[i].roll2;
             frameRoll2 = gameFrames[i].roll2;
         } else if (frameRoll1 == 10) {
-            gameFrames[i].score = 10;
+            gameFrames[i].score = gameFrames[i].calcScore(&frameRoll1, &frameRoll2, nextRoll1, nextRoll2);
             gameFrames[i].printScore(currentFrame, frameRoll1, frameRoll2, gameFrames[i].score);
             continue;
         }
 
         // Calculate frame score
-        gameFrames[i].score = gameFrames[i].calcScore(&frameRoll1, &frameRoll2);
+        gameFrames[i].score = gameFrames[i].calcScore(&frameRoll1, &frameRoll2, nextRoll1, nextRoll2);
 
         // Print score table
         gameFrames[i].printScore(currentFrame, frameRoll1, frameRoll2, gameFrames[i].score);

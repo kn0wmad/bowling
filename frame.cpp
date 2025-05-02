@@ -4,14 +4,14 @@
 
 // Method definitions
 // Calculate score for each frame
-int Frame::calcScore(int *roll1, int *roll2) {
+int Frame::calcScore(int *roll1, int *roll2, int nextRoll1, int nextRoll2) {
     int frameScore;
 
     if (*roll1 == 10) {                     // Handle strikes
         frameScore = 10;
     } else if ((*roll1 + *roll2) == 10) {   // Handle spares
         frameScore = 10;
-    } else {
+    } else {                                // Normal rolls
         frameScore = *roll1 + *roll2;
     }
     return frameScore;
