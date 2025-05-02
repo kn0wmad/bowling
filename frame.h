@@ -14,7 +14,7 @@ class Frame {
         int score;
 
         // Class method prototypes
-        int calcScore(int *roll1, int *roll2, int nextRoll1, int nextRoll2);
+        int calcScore(int *roll1, int *roll2, int *nextRoll1, int *nextRoll2);
         void printScore(int frame, int roll1, int roll2, int frameScore);
         bool isSpare();
         bool isStrike();

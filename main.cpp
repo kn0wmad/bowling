@@ -1,5 +1,5 @@
 /*  David Croisant
-    Bowling Scoring
+    Bowling Scoreboard
 
     A system to produce bowling scores frame-by-frame
 */
@@ -38,8 +38,8 @@ int main() {
         int frameRoll1 = gameFrames[i].roll1;
         int frameRoll2;
 
-        int nextRoll1 = gameFrames[i + 1].roll1;
-        int nextRoll2 = gameFrames[i + 1].roll2;
+        int *nextRoll1 = &gameFrames[i + 1].roll1;
+        int *nextRoll2 = &gameFrames[i + 1].roll2;
 
         if (frameRoll1 < 10) {                          // Take second roll from file, only if not a strike
             file >> gameFrames[i].roll2;
@@ -50,7 +50,7 @@ int main() {
             continue;
         }
 
-        // Calculate frame score
+        // Calculate frame score for non-strikes
         gameFrames[i].score = gameFrames[i].calcScore(&frameRoll1, &frameRoll2, nextRoll1, nextRoll2);
 
         // Print score table
