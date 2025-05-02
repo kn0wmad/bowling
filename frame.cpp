@@ -3,16 +3,40 @@
 #include <string>
 
 // Method definitions
-int Frame::calcScore(int roll1, int roll2) {        // Calculate the score for this frame
+// Calculate score for each frame
+int Frame::calcScore(int roll1, int roll2) {
     int frameScore;
-    // std::cout << roll1 << " " << roll2 << std::endl;
-    frameScore = roll1 + roll2;
-    // std::cout << frameScore << std::endl;
+
+    if (roll1 == 10) {
+
+    } else {
+        frameScore = roll1 + roll2;
+    }
+
     return frameScore;
 }
 
-void Frame::printScore(int frame, int roll1, int roll2, int frameScore) {                          // Print the score table for this frame
-    std::cout << "Frame | " << frame << " | " << std::endl;
-    std::cout << "Throw | " << roll1 << " " << roll2 << " | " << std::endl;
-    std::cout << "Score | " << frameScore << " | " << std::endl;
+// Print frame score table iteratively, to include each previous frame
+void Frame::printScore(int frame, int roll1, int roll2, int frameScore) {
+    // Frames
+    std::cout << "Frame | ";
+
+    for (int i = 0; i < frame; i++) {          // Iterate frame index for each frame
+        std::cout << frame << " | ";
+    }
+    std::cout << std::endl;
+
+    // Throws
+    std::cout << "Throw | ";                    // Iterate throw for each frame
+    for (int j = 0; j < frame; j++) {
+        std::cout << roll1 << " " << roll2 << " | ";
+    }
+    std::cout << std::endl;
+
+    // Scores
+    std::cout << "Score | ";                    // Iterate Score for each frame
+    for (int k = 0; k < frame; k++) {
+        std::cout << frameScore << " | ";
+    }
+    std::cout << std::endl << std::endl;
 }
