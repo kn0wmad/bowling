@@ -25,11 +25,14 @@ int main() {
         std::cout << "Error reading file: " << bowlerFile << std::endl;
     }
 
-    // Create an array of Frame objects for the full game
-    Frame gameFrames[TOTAL_FRAMES];
-
     // Iterate through each frame
     for (int i = 0; i < TOTAL_FRAMES; ++i) {
+        // Create an array of Frame objects for the full game
+        Frame gameFrames[TOTAL_FRAMES];
+
+        // Construct objects
+        gameFrames[i] = Frame(i, 0, 0, 0);
+
         int currentFrame;                               // Current frame
         gameFrames[i].frame = i + 1;
         currentFrame = gameFrames[i].frame;
@@ -47,14 +50,13 @@ int main() {
         } else if (frameRoll1 == 10) {
             gameFrames[i].score = gameFrames[i].calcScore(&frameRoll1, &frameRoll2, nextRoll1, nextRoll2);
             gameFrames[i].printScore(currentFrame, frameRoll1, frameRoll2, gameFrames[i].score);
-            continue;
         }
 
         // Calculate frame score for non-strikes
         gameFrames[i].score = gameFrames[i].calcScore(&frameRoll1, &frameRoll2, nextRoll1, nextRoll2);
 
         // Print score table
-        gameFrames[i].printScore(currentFrame, frameRoll1, frameRoll2, gameFrames[i].score);
+        gameFrames[i].printScore(i, frameRoll1, frameRoll2, gameFrames[i].score);
     }
 
     // Close the filestream
