@@ -14,7 +14,7 @@ class Frame {
         int score;
 
         // Class method prototypes
-        void calcScore();
+        int calcScore(int roll1, int roll2);
         void printScore();
 };
 
