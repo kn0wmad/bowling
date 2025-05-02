@@ -40,9 +40,13 @@ int main() {
             file >> roll[frameRoll2];
         }
 
+        frameScore = std::to_string(roll[frameRoll1] + roll[frameRoll2]);
+
         // Output Frame data
         // std::cout << frameRoll1 << " " << frameRoll2 << std::endl;
-        std::cout << roll[frameRoll1] << " " << roll[frameRoll2] << std::endl;
+        std::cout << "Frame " << "|  " << frame << "  " << std::endl;
+        std::cout << "Throw " << "| " << roll[frameRoll1] << " " << roll[frameRoll2] << std::endl;
+        std::cout << "Score " << "|  " << frameScore << "  " << std::endl;
     }
 
     // Close user's file
