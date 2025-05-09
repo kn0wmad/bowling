@@ -37,20 +37,33 @@ int main() {
             file >> gameFrames[i].roll2;            // Input second roll from file and assign to object's roll2
         }
 
-        std::cout << "Frame |" << " |" << std::endl;
-        std::cout << "Throw |" << " |" << std::endl;
-        std::cout << "Score |" << " |" << std::endl;
+        std::cout << "Frame |";         // Print frames
 
-        for (int j = 0; j < i; j++) {
-            std::cout << std::setw(2) << i + 1 << std::setw(2);
-            if (gameFrames[j].roll1 != 10) {
-                std::cout << gameFrames[j].roll1 << gameFrames[j].roll2;
-                std::cout << gameFrames[j].Score(gameFrames[j].roll1, gameFrames[j].roll2) << " | ";
-            } else {
-                std::cout << gameFrames[j].roll1 << " | ";
-                std::cout << " X | ";
-            }
+        for (int j = 0; j <= i; j++) {
+            gameFrames[i].frame += 1;
+            std::cout << std::setw(3) << gameFrames[i].frame << std::setw(3) << " |" << std::setw(1);
         }
+
+        std::cout << std::endl;
+        std::cout << "Throw |";         // Print rolls
+
+        for (int k = 0; k <= i; k++) {
+            gameFrames[k].isStrike(gameFrames[k - 1].roll1);
+            gameFrames[k].isSpare(gameFrames[k - 1].roll1, gameFrames[k].roll2);
+            std::cout << std::setw(2) << gameFrames[k].roll1 << " " << gameFrames[k].roll2 << std::setw(2) << " |";
+        }
+
+        std::cout << std::endl;
+        std::cout << "Score |";         // Print scores
+
+        for (int l = 0; l <= i; l++) {
+            std::cout << std::setw(3) << gameFrames[l].Score(gameFrames[l].roll1, gameFrames[l].roll2, gameFrames[l].bonus) << std::setw(3) << " |" << std::setw(1);
+            // } else {
+            //     std::cout << std::setw(3) << gameFrames[l].Score(gameFrames[l].roll1, gameFrames[l].roll2) + gameFrames[l - 1].Score(gameFrames[l - 1].roll1, gameFrames[l - 1].roll2) << std::setw(3) << " |" << std::setw(1);
+            // }
+        }
+
+        std::cout << std::endl << std::endl;
     }
 
     // Close the filestream

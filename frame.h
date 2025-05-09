@@ -7,15 +7,17 @@
 // Frame class
 class Frame {
     public:
+        int frame;
         int roll1;
         int roll2;
+        int bonus;
 
         // Constructor declaration and inititialization
-        Frame(int r1 = 0, int r2 = 0) : roll1(r1), roll2(r2) {}
+        Frame(int f = 0, int r1 = 0, int r2 = 0, int b = 0) : frame(f), roll1(r1), roll2(r2), bonus(b) {}
 
         // Class method prototypes
-        bool isSpare();
-        bool isStrike();
-        std::string Score(int roll1, int roll2);
+        std::string Score(int roll1, int roll2, int &bonus);
+        bool isSpare(int roll1, int roll2);
+        bool isStrike(int roll1);
 };
 #endif
